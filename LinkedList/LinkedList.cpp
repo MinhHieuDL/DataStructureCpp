@@ -40,12 +40,25 @@ inline C_LinkedList<T>::C_LinkedList()
 }
 
 template<class T>
+C_LinkedList<T>::~C_LinkedList()
+{
+	CNode<T> *p_currentNode = m_pHead;
+	CNode<T> *p_nextNode = NULL;
+	for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
+	{
+		p_nextNode = p_currentNode->GetNext();
+		delete p_currentNode;
+		p_currentNode = p_nextNode;
+	}
+}
+
+template<class T>
 inline void C_LinkedList<T>::insert(T newData)
 {
-	CNode<T> *newNode = new CNode<T>;
-	newNode->SetData(newData);
-	newNode->SetNext(m_pHead);
-	m_pHead = newNode;
+	CNode<T> *p_newNode = new CNode<T>;
+	p_newNode->SetData(newData);
+	p_newNode->SetNext(m_pHead);
+	m_pHead = p_newNode;
 	m_uiNumberOfNode++;
 }
 
@@ -58,20 +71,21 @@ inline void C_LinkedList<T>::erase(T SearchingData)
 	}
 	else
 	{
-		CNode<T> *currentNode = m_pHead;
-		CNode<T> *previousNode = NULL;
+		CNode<T> *p_currentNode = m_pHead;
+		CNode<T> *p_previousNode = NULL;
 		for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
 		{
-			if (currentNode->GetData() == SearchingData)
+			if (p_currentNode->GetData() == SearchingData)
 			{
-				previousNode->SetNext(currentNode->GetNext());
-				delete currentNode;
+				p_previousNode->SetNext(p_currentNode->GetNext());
+				delete p_currentNode;
+				m_uiNumberOfNode--;
 				return;
 			}
 			else
 			{
-				previousNode = currentNode;
-				currentNode = currentNode->GetNext();
+				p_previousNode = p_currentNode;
+				p_currentNode = p_currentNode->GetNext();
 			}
 		}
 		cout << "The object you want to remove doesn't exist in List" << endl;
@@ -92,21 +106,20 @@ inline void C_LinkedList<T>::display()
 template<class T>
 inline T C_LinkedList<T>::at(unsigned int position)
 {
-	CNode<T> *returnNode = NULL;
 	if (position >= m_uiNumberOfNode)
 	{
-		cout << "The List has only" << m_uiNumberOfNode << "elements" << endl;
+		cout << "The List has only " << m_uiNumberOfNode << "elements" << endl;
 	}
 	else
 	{
-		CNode<T> *currentNode = m_pHead;
+		CNode<T> *p_currentNode = m_pHead;
 		for (unsigned int i = m_uiNumberOfNode; i > 0; i--)
 		{
 			if ((i - 1) == position)
-				return currentNode->GetData();
+				return p_currentNode->GetData();
 			else
 			{
-				currentNode = currentNode->GetNext();
+				p_currentNode = p_currentNode->GetNext();
 			}
 		}
 	}

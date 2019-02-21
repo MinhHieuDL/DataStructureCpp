@@ -15,7 +15,8 @@ int main(void)
 		cout << ListName.at(i) << endl;
 	}
 	ListName.erase("DLSVN2");
-	ListName.display();
+	cout << "The size of List is: " << ListName.size() << endl;
+	ListName.erase("DLSVN2");
 	cin.get();
 	return 0;
 }

@@ -25,6 +25,7 @@ private:
 	unsigned int m_uiNumberOfNode;
 public:
 	C_LinkedList();
+	~C_LinkedList();
 	void insert(T);
 	void erase(T);
 	void display();
