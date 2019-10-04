@@ -1,7 +1,8 @@
-#pragma once
-#include <iostream>
 #ifndef _LinkedList_H
 #define _LinkedList_H
+
+#include <iostream>
+
 using namespace std;
 template<class T>
 class CNode
