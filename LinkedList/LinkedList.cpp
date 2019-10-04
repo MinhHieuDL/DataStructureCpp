@@ -1,3 +1,11 @@
+/*
+* Date : 04/10/2019
+* Author: Minh Hieu
+* Name of project: My linkedlish
+*/
+
+
+
 #include "LinkedList.h"
 
 // Node define
