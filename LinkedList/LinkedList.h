@@ -27,8 +27,8 @@ private:
 public:
 	C_LinkedList();
 	~C_LinkedList();
-	void insert(T);
-	void erase(T);
+	void insert(T, unsigned int);
+	void erase(unsigned int);
 	void display();
 	T at(unsigned int);
 	unsigned int size();

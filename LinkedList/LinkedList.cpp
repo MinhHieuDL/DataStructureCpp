@@ -4,8 +4,6 @@
 * Name of project: My linkedlish
 */
 
-
-
 #include "LinkedList.h"
 
 // Node define
@@ -61,42 +59,54 @@ C_LinkedList<T>::~C_LinkedList()
 }
 
 template<class T>
-inline void C_LinkedList<T>::insert(T newData)
+inline void C_LinkedList<T>::insert(T newData, unsigned int uiPosition)
 {
-	CNode<T> *p_newNode = new CNode<T>;
-	p_newNode->SetData(newData);
-	p_newNode->SetNext(m_pHead);
-	m_pHead = p_newNode;
+	CNode<T> *pNewNode = new CNode<T>;
+	pNewNode->SetData(newData);
+	pNewNode->SetNext(NULL);
+	if((uiPosition == 1) || (m_pHead == NULL))
+	{
+		pNewNode->SetNext(m_pHead);
+		m_pHead = pNewNode;
+		m_uiNumberOfNode++;
+		return;
+	}
+
+	CNode<T> *pCurrentNode = m_pHead;
+	for(unsigned int i = 0; i < uiPosition - 2; i++)
+	{
+		pCurrentNode = pCurrentNode->GetNext();
+	}
+	pNewNode->SetNext(pCurrentNode->GetNext()); 
+	pCurrentNode->SetNext(pNewNode);
 	m_uiNumberOfNode++;
 }
 
 template<class T>
-inline void C_LinkedList<T>::erase(T SearchingData)
+inline void C_LinkedList<T>::erase(unsigned int uiPosition)
 {
 	if (!m_pHead)
 	{
 		cout << "The List is currently empty" << endl;
 	}
 	else
-	{
-		CNode<T> *p_currentNode = m_pHead;
-		CNode<T> *p_previousNode = NULL;
-		for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
+	{	
+		CNode<T> *pPrevNode = m_pHead;
+		if(uiPosition == 1)
 		{
-			if (p_currentNode->GetData() == SearchingData)
-			{
-				p_previousNode->SetNext(p_currentNode->GetNext());
-				delete p_currentNode;
-				m_uiNumberOfNode--;
-				return;
-			}
-			else
-			{
-				p_previousNode = p_currentNode;
-				p_currentNode = p_currentNode->GetNext();
-			}
+			m_pHead = pPrevNode->GetNext();
+			delete pPrevNode;
+			m_uiNumberOfNode--;
+			return;
 		}
-		cout << "The object you want to remove doesn't exist in List" << endl;
+		for(unsigned int i = 0; i < uiPosition - 2; i++)
+		{
+			pPrevNode = pPrevNode->GetNext();
+		}
+		CNode<T> *pCurrentNode = pPrevNode->GetNext();
+		pPrevNode->SetNext(pCurrentNode->GetNext());
+		delete pCurrentNode;
+		m_uiNumberOfNode--;
 	}
 }
 
@@ -104,11 +114,12 @@ template<class T>
 inline void C_LinkedList<T>::display()
 {
 	CNode<T> *currentNode = m_pHead;
-	for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
+	while (currentNode != NULL)
 	{
-		cout << currentNode->GetData() << endl;
+		cout << currentNode->GetData() << " ";
 		currentNode = currentNode->GetNext();
 	}
+	cout << endl;
 }
 
 template<class T>
