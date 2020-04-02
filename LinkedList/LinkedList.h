@@ -29,6 +29,7 @@ public:
 	~C_LinkedList();
 	void insert(T, unsigned int);
 	void erase(unsigned int);
+	void reverseInterative();
 	void display();
 	T at(unsigned int);
 	unsigned int size();

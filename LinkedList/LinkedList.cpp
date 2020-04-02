@@ -129,6 +129,22 @@ inline void C_LinkedList<T>::display()
 }
 
 template<class T>
+inline void C_LinkedList<T>::reverseInterative()
+{
+	CNode<T> *p_PrevNode = NULL;
+	CNode<T> *p_CurNode = m_pHead;
+	CNode<T> *p_NextNode = NULL;
+	while (p_CurNode != NULL)
+	{
+		p_NextNode = p_CurNode->GetNext();
+		p_CurNode->SetNext(p_PrevNode);
+		p_PrevNode = p_CurNode;
+		p_CurNode = p_NextNode;
+	}
+	m_pHead = p_PrevNode;
+}
+
+template<class T>
 inline T C_LinkedList<T>::at(unsigned int uiPosition)
 {
 	T ret;
