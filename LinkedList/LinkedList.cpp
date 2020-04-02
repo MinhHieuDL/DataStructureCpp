@@ -147,8 +147,8 @@ inline void C_LinkedList<T>::reverseIterative()
 template<class T>
 inline T C_LinkedList<T>::at(unsigned int uiPosition)
 {
-	T ret;
-	if (uiPosition >= m_uiNumberOfNode)
+	T ret = 0;
+	if (uiPosition > m_uiNumberOfNode)
 	{
 		cout << "The List has only " << m_uiNumberOfNode << " elements" << endl;
 	}
