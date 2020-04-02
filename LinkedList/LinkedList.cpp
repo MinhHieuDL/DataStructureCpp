@@ -129,25 +129,27 @@ inline void C_LinkedList<T>::display()
 }
 
 template<class T>
-inline T C_LinkedList<T>::at(unsigned int position)
+inline T C_LinkedList<T>::at(unsigned int uiPosition)
 {
-	if (position >= m_uiNumberOfNode)
+	T ret;
+	if (uiPosition >= m_uiNumberOfNode)
 	{
-		cout << "The List has only " << m_uiNumberOfNode << "elements" << endl;
+		cout << "The List has only " << m_uiNumberOfNode << " elements" << endl;
 	}
 	else
 	{
 		CNode<T> *p_currentNode = m_pHead;
-		for (unsigned int i = m_uiNumberOfNode; i > 0; i--)
+		
+		if(uiPosition != 1)
 		{
-			if ((i - 1) == position)
-				return p_currentNode->GetData();
-			else
+			for (unsigned int i = 0; i < uiPosition - 1; i++)
 			{
 				p_currentNode = p_currentNode->GetNext();
 			}
 		}
+		ret = p_currentNode->GetData();
 	}
+	return ret;
 }
 
 template<class T>
