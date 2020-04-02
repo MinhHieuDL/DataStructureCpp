@@ -49,17 +49,17 @@ template<class T>
 C_LinkedList<T>::~C_LinkedList()
 {
 	CNode<T> *p_currentNode = m_pHead;
-	CNode<T> *p_nextNode = NULL;
+	CNode<T> *pNextNode = NULL;
 	for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
 	{
-		p_nextNode = p_currentNode->GetNext();
+		pNextNode = p_currentNode->GetNext();
 		delete p_currentNode;
-		p_currentNode = p_nextNode;
+		p_currentNode = pNextNode;
 	}
 }
 
 template<class T>
-inline void C_LinkedList<T>::insert(T newData, unsigned int uiPosition)
+inline void C_LinkedList<T>::insertNode(T newData, unsigned int uiPosition)
 {
 	CNode<T> *pNewNode = new CNode<T>;
 	pNewNode->SetData(newData);
@@ -89,7 +89,7 @@ inline void C_LinkedList<T>::insert(T newData, unsigned int uiPosition)
 }
 
 template<class T>
-inline void C_LinkedList<T>::erase(unsigned int uiPosition)
+inline void C_LinkedList<T>::deleteNode(unsigned int uiPosition)
 {
 	if (!m_pHead)
 	{
@@ -119,29 +119,29 @@ inline void C_LinkedList<T>::erase(unsigned int uiPosition)
 template<class T>
 inline void C_LinkedList<T>::display()
 {
-	CNode<T> *currentNode = m_pHead;
-	while (currentNode != NULL)
+	CNode<T> *pCurrentNode = m_pHead;
+	while (pCurrentNode != NULL)
 	{
-		cout << currentNode->GetData() << " ";
-		currentNode = currentNode->GetNext();
+		cout << pCurrentNode->GetData() << " ";
+		pCurrentNode = pCurrentNode->GetNext();
 	}
 	cout << endl;
 }
 
 template<class T>
-inline void C_LinkedList<T>::reverseInterative()
+inline void C_LinkedList<T>::reverseIterative()
 {
-	CNode<T> *p_PrevNode = NULL;
-	CNode<T> *p_CurNode = m_pHead;
-	CNode<T> *p_NextNode = NULL;
-	while (p_CurNode != NULL)
+	CNode<T> *pPrevNode = NULL;
+	CNode<T> *pCurNode = m_pHead;
+	CNode<T> *pNextNode = NULL;
+	while (pCurNode != NULL)
 	{
-		p_NextNode = p_CurNode->GetNext();
-		p_CurNode->SetNext(p_PrevNode);
-		p_PrevNode = p_CurNode;
-		p_CurNode = p_NextNode;
+		pNextNode = pCurNode->GetNext();
+		pCurNode->SetNext(pPrevNode);
+		pPrevNode = pCurNode;
+		pCurNode = pNextNode;
 	}
-	m_pHead = p_PrevNode;
+	m_pHead = pPrevNode;
 }
 
 template<class T>

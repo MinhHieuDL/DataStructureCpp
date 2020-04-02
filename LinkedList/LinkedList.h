@@ -27,9 +27,9 @@ private:
 public:
 	C_LinkedList();
 	~C_LinkedList();
-	void insert(T, unsigned int);
-	void erase(unsigned int);
-	void reverseInterative();
+	void insertNode(T, unsigned int);
+	void deleteNode(unsigned int);
+	void reverseIterative();
 	void display();
 	T at(unsigned int);
 	unsigned int size();
