@@ -64,6 +64,7 @@ inline void C_LinkedList<T>::insert(T newData, unsigned int uiPosition)
 	CNode<T> *pNewNode = new CNode<T>;
 	pNewNode->SetData(newData);
 	pNewNode->SetNext(NULL);
+	// add the new node to the head of the linked list
 	if((uiPosition == 1) || (m_pHead == NULL))
 	{
 		pNewNode->SetNext(m_pHead);
@@ -71,7 +72,12 @@ inline void C_LinkedList<T>::insert(T newData, unsigned int uiPosition)
 		m_uiNumberOfNode++;
 		return;
 	}
-
+	// add the new node to the tail of the linked list if the position > last position of the list
+	if(uiPosition > m_uiNumberOfNode + 2)
+	{
+		uiPosition = m_uiNumberOfNode + 1;
+	}
+	// add the new node to the any position of the linked list
 	CNode<T> *pCurrentNode = m_pHead;
 	for(unsigned int i = 0; i < uiPosition - 2; i++)
 	{
