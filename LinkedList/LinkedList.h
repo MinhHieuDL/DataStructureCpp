@@ -2,7 +2,6 @@
 #define _LinkedList_H
 
 #include <iostream>
-
 using namespace std;
 template<class T>
 class CNode
@@ -24,12 +23,14 @@ class C_LinkedList
 private:
 	CNode<T> *m_pHead;
 	unsigned int m_uiNumberOfNode;
+	void reverseRecursive(CNode<T> *pNode);
+	void displayRecursive(CNode<T> *pNode);
 public:
 	C_LinkedList();
 	~C_LinkedList();
 	void insertNode(T, unsigned int);
 	void deleteNode(unsigned int);
-	void reverseIterative();
+	void reverse();
 	void display();
 	T at(unsigned int);
 	unsigned int size();

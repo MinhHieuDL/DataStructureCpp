@@ -5,7 +5,7 @@
 */
 
 #include "LinkedList.h"
-
+#define USING_RECURSIVE
 // Node define
 template<class T>
 inline CNode<T>::CNode()
@@ -119,6 +119,7 @@ inline void C_LinkedList<T>::deleteNode(unsigned int uiPosition)
 template<class T>
 inline void C_LinkedList<T>::display()
 {
+#ifndef USING_RECURSIVE
 	CNode<T> *pCurrentNode = m_pHead;
 	while (pCurrentNode != NULL)
 	{
@@ -126,11 +127,28 @@ inline void C_LinkedList<T>::display()
 		pCurrentNode = pCurrentNode->GetNext();
 	}
 	cout << endl;
+#else
+	cout << "This list was displayed using recursive:";
+	displayRecursive(m_pHead);
+#endif
 }
 
 template<class T>
-inline void C_LinkedList<T>::reverseIterative()
+inline void C_LinkedList<T>::displayRecursive(CNode<T> *pNode)
 {
+	if(pNode == NULL)
+	{
+		cout << endl;
+		return;
+	}
+	cout << pNode->GetData() << " ";
+	displayRecursive(pNode->GetNext());
+}
+
+template<class T>
+inline void C_LinkedList<T>::reverse()
+{
+#ifndef USING_RECURSIVE
 	CNode<T> *pPrevNode = NULL;
 	CNode<T> *pCurNode = m_pHead;
 	CNode<T> *pNextNode = NULL;
@@ -142,6 +160,24 @@ inline void C_LinkedList<T>::reverseIterative()
 		pCurNode = pNextNode;
 	}
 	m_pHead = pPrevNode;
+#else
+	cout << "This list was reversed using the recursive!" << endl;
+	reverseRecursive(m_pHead);
+#endif
+}
+
+template<class T>
+inline void C_LinkedList<T>::reverseRecursive(CNode<T> *pNode)
+{
+	if(pNode->GetNext() == NULL)
+	{
+		m_pHead = pNode;
+		return;
+	}
+	reverseRecursive(pNode->GetNext());
+	CNode<T> *pNextNode = pNode->GetNext();
+	pNextNode->SetNext(pNode);
+	pNode->SetNext(NULL);
 }
 
 template<class T>
