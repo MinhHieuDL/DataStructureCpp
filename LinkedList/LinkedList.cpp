@@ -73,7 +73,7 @@ inline void C_LinkedList<T>::insertNode(T newData, unsigned int uiPosition)
 		return;
 	}
 	// add the new node to the tail of the linked list if the position > last position of the list
-	if(uiPosition > m_uiNumberOfNode + 2)
+	if(uiPosition > m_uiNumberOfNode + 1)
 	{
 		uiPosition = m_uiNumberOfNode + 1;
 	}
