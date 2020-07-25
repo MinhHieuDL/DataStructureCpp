@@ -10,8 +10,9 @@ class Stack
 private:
     unsigned int m_uiStackPointer;
     C_LinkedList<T> m_StackBuffer;
+    unsigned int m_uiSize;
 public:
-    Stack();
+    Stack(unsigned int uiSize);
     ~Stack();
     void push(T data);
     void pop();

@@ -7,9 +7,10 @@
 #include "Stack.h"
 
 template<class T>
-Stack<T>::Stack()
+Stack<T>::Stack(unsigned int uiSize)
 {
     m_uiStackPointer = 0;
+    m_uiSize = uiSize;
 }
 
 template<class T>
@@ -24,8 +25,15 @@ Stack<T>::~Stack()
 template<class T>
 void Stack<T>::push(T data)
 {
-    m_StackBuffer.insertNode(data, m_uiStackPointer);
-    m_uiStackPointer++;
+    if(m_uiStackPointer < m_uiSize)
+    {
+        m_StackBuffer.insertNode(data, m_uiStackPointer);
+        m_uiStackPointer++;    
+    }
+    else
+    {
+        cout << "Stack full" << endl;
+    }
 }
 
 template<class T>
@@ -33,7 +41,7 @@ void Stack<T>::pop()
 {
     if(!this->isEmpty())
     {
-        m_StackBuffer.deleteNode(m_uiStackPointer);
+        m_StackBuffer.deleteNode(m_uiStackPointer - 1);
         m_uiStackPointer--;
     }
     else
@@ -47,7 +55,7 @@ T Stack<T>::top()
 {
     if(!this->isEmpty())
     {
-        return m_StackBuffer.at(m_uiStackPointer);
+        return m_StackBuffer.at(m_uiStackPointer - 1);
     }
     else
     {
