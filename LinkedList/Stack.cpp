@@ -1,20 +1,20 @@
 /*
 * Date : 25/07/2020
 * Author: Minh Hieu
-* Name of project: My Stack DS
+* Name of project: My C_Stack DS
 */
 
 #include "Stack.h"
 
 template<class T>
-Stack<T>::Stack(unsigned int uiSize)
+C_Stack<T>::C_Stack(unsigned int uiSize)
 {
-    m_uiStackPointer = 0;
+    m_uiC_StackPointer = 0;
     m_uiSize = uiSize;
 }
 
 template<class T>
-Stack<T>::~Stack()
+C_Stack<T>::~C_Stack()
 {
     while(!this->isEmpty())
     {
@@ -23,12 +23,12 @@ Stack<T>::~Stack()
 }
 
 template<class T>
-void Stack<T>::push(T data)
+void C_Stack<T>::push(T data)
 {
-    if(m_uiStackPointer < m_uiSize)
+    if(m_uiC_StackPointer < m_uiSize)
     {
-        m_StackBuffer.insertNode(data, m_uiStackPointer);
-        m_uiStackPointer++;    
+        m_C_StackBuffer.insertNode(data, m_uiC_StackPointer);
+        m_uiC_StackPointer++;    
     }
     else
     {
@@ -37,12 +37,12 @@ void Stack<T>::push(T data)
 }
 
 template<class T>
-void Stack<T>::pop()
+void C_Stack<T>::pop()
 {
     if(!this->isEmpty())
     {
-        m_StackBuffer.deleteNode(m_uiStackPointer - 1);
-        m_uiStackPointer--;
+        m_C_StackBuffer.deleteNode(m_uiC_StackPointer - 1);
+        m_uiC_StackPointer--;
     }
     else
     {
@@ -51,11 +51,11 @@ void Stack<T>::pop()
 }
 
 template<class T>
-T Stack<T>::top()
+T C_Stack<T>::top()
 {
     if(!this->isEmpty())
     {
-        return m_StackBuffer.at(m_uiStackPointer - 1);
+        return m_C_StackBuffer.at(m_uiC_StackPointer - 1);
     }
     else
     {
@@ -64,7 +64,7 @@ T Stack<T>::top()
 }
 
 template<class T>
-bool Stack<T>::isEmpty()
+bool C_Stack<T>::isEmpty()
 {
-    return (m_uiStackPointer == 0);
+    return (m_uiC_StackPointer == 0);
 }
