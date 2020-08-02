@@ -1,16 +1,17 @@
 #ifndef _C_Stack_H
 #define _C_Stack_H
 
-#include "LinkedList.h"
+#include "CNode.h"
+#include <iostream>
 using namespace std;
 
 template<class T>
 class C_Stack
 {
 private:
-    unsigned int m_uiC_StackPointer;
-    C_LinkedList<T> m_C_StackBuffer;
+    CNode<T>* m_pStackNodePointer;
     unsigned int m_uiSize;
+    unsigned int m_uiNumOfElements;
 public:
     C_Stack(unsigned int uiSize);
     ~C_Stack();

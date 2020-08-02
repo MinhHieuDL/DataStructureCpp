@@ -5,12 +5,14 @@
 */
 
 #include "Stack.h"
+using namespace std;
 
 template<class T>
 C_Stack<T>::C_Stack(unsigned int uiSize)
 {
-    m_uiC_StackPointer = 0;
+    m_uiNumOfElements = 0;
     m_uiSize = uiSize;
+    m_pStackNodePointer = nullptr;
 }
 
 template<class T>
@@ -25,10 +27,12 @@ C_Stack<T>::~C_Stack()
 template<class T>
 void C_Stack<T>::push(T data)
 {
-    if(m_uiC_StackPointer < m_uiSize)
+    if(m_uiNumOfElements < m_uiSize)
     {
-        m_C_StackBuffer.insertNode(data, m_uiC_StackPointer);
-        m_uiC_StackPointer++;    
+        CNode<T>* pNewNode = new CNode<T>(data);
+        pNewNode->SetNext(m_pStackNodePointer);
+        m_pStackNodePointer = pNewNode;
+        m_uiNumOfElements++;    
     }
     else
     {
@@ -41,8 +45,10 @@ void C_Stack<T>::pop()
 {
     if(!this->isEmpty())
     {
-        m_C_StackBuffer.deleteNode(m_uiC_StackPointer - 1);
-        m_uiC_StackPointer--;
+        CNode<T>* pTempNode = m_pStackNodePointer->GetNext();
+        delete m_pStackNodePointer;
+        m_pStackNodePointer = pTempNode;
+        m_uiNumOfElements--;
     }
     else
     {
@@ -55,16 +61,19 @@ T C_Stack<T>::top()
 {
     if(!this->isEmpty())
     {
-        return m_C_StackBuffer.at(m_uiC_StackPointer - 1);
+        return m_pStackNodePointer->GetData();
     }
     else
     {
         cout << "Stack is empty" << endl;
+        return -1;
     }
 }
 
 template<class T>
 bool C_Stack<T>::isEmpty()
 {
-    return (m_uiC_StackPointer == 0);
+    return (m_uiNumOfElements == 0);
 }
+
+template class C_Stack<unsigned int>;
