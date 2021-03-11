@@ -11,7 +11,7 @@ private:
 	CNode<T> *m_pNext;
 public:
 	CNode();
-    CNode(T data);
+    	CNode(T data);
 	void SetData(T data);
 	T GetData();
 	void SetNext(CNode<T> *);
