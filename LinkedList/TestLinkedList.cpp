@@ -1,22 +1,27 @@
+//#include "Stack.h"
+//#include "Stack.cpp"
 #include "LinkedList.h"
-#include "LinkedList.cpp"
-#include <string>
-
+#include "Stack.h"
+//#include "LinkedList.cpp"
 int main(void)
 {
-	string Name[3] = { "DLSVN1","DLSVN2" ,"DLSVN3" };
-	C_LinkedList<string> ListName;
-	for (unsigned i = 0; i < 3; i++)
+	//C_LinkedList<unsigned int> TestList;
+	//TestList.insertNode(1, 1);
+	//TestList.insertNode(2, 3);
+	//TestList.insertNode(3, 2);
+	//TestList.display();
+
+	C_Stack<unsigned int> TestStack(5);
+	for(unsigned i = 0; i < 5; i++)
 	{
-		ListName.insert(Name[i]);
+		TestStack.push(i);
 	}
-	for (unsigned int i = 0; i < ListName.size(); i++)
+
+	for(unsigned i = 0; i < 5; i++)
 	{
-		cout << ListName.at(i) << endl;
+		cout << TestStack.top() << endl;
+		TestStack.pop();
 	}
-	ListName.erase("DLSVN2");
-	cout << "The size of List is: " << ListName.size() << endl;
-	ListName.erase("DLSVN2");
 	cin.get();
 	return 0;
 }
