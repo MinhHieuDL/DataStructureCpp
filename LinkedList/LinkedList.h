@@ -2,20 +2,8 @@
 #define _LinkedList_H
 
 #include <iostream>
+#include "CNode.h"
 using namespace std;
-template<class T>
-class CNode
-{
-private:
-	T m_Tdata;
-	CNode<T> *m_pNext;
-public:
-	CNode();
-	void SetData(T data);
-	T GetData();
-	void SetNext(CNode<T> *);
-	CNode<T>* GetNext(void);
-};
 
 template<class T>
 class C_LinkedList

@@ -6,42 +6,11 @@
 
 #include "LinkedList.h"
 #define USING_RECURSIVE
-// Node define
-template<class T>
-inline CNode<T>::CNode()
-{
-	m_pNext = NULL;
-}
-
-template<class T>
-inline void CNode<T>::SetNext(CNode *newNode)
-{
-	m_pNext = newNode;
-}
-
-template<class T>
-inline void CNode<T>::SetData(T data)
-{
-	m_Tdata = data;
-}
-
-template<class T>
-inline T CNode<T>::GetData()
-{
-	return m_Tdata;
-}
-
-template<class T>
-inline CNode<T> * CNode<T>::GetNext()
-{
-	return m_pNext;
-}
-
 // List Define
 template<class T>
 inline C_LinkedList<T>::C_LinkedList()
 {
-	m_pHead = NULL;
+	m_pHead = nullptr;
 	m_uiNumberOfNode = 0;
 }
 
@@ -49,7 +18,7 @@ template<class T>
 C_LinkedList<T>::~C_LinkedList()
 {
 	CNode<T> *p_currentNode = m_pHead;
-	CNode<T> *pNextNode = NULL;
+	CNode<T> *pNextNode = nullptr;
 	for (unsigned int i = 0; i < m_uiNumberOfNode; i++)
 	{
 		pNextNode = p_currentNode->GetNext();
@@ -63,9 +32,9 @@ inline void C_LinkedList<T>::insertNode(T newData, unsigned int uiPosition)
 {
 	CNode<T> *pNewNode = new CNode<T>;
 	pNewNode->SetData(newData);
-	pNewNode->SetNext(NULL);
+	pNewNode->SetNext(nullptr);
 	// add the new node to the head of the linked list
-	if((uiPosition == 1) || (m_pHead == NULL))
+	if((uiPosition == 1) || (m_pHead == nullptr))
 	{
 		pNewNode->SetNext(m_pHead);
 		m_pHead = pNewNode;
@@ -121,7 +90,7 @@ inline void C_LinkedList<T>::display()
 {
 #ifndef USING_RECURSIVE
 	CNode<T> *pCurrentNode = m_pHead;
-	while (pCurrentNode != NULL)
+	while (pCurrentNode != nullptr)
 	{
 		cout << pCurrentNode->GetData() << " ";
 		pCurrentNode = pCurrentNode->GetNext();
@@ -136,7 +105,7 @@ inline void C_LinkedList<T>::display()
 template<class T>
 inline void C_LinkedList<T>::displayRecursive(CNode<T> *pNode)
 {
-	if(pNode == NULL)
+	if(pNode == nullptr)
 	{
 		cout << endl;
 		return;
@@ -149,10 +118,10 @@ template<class T>
 inline void C_LinkedList<T>::reverse()
 {
 #ifndef USING_RECURSIVE
-	CNode<T> *pPrevNode = NULL;
+	CNode<T> *pPrevNode = nullptr;
 	CNode<T> *pCurNode = m_pHead;
-	CNode<T> *pNextNode = NULL;
-	while (pCurNode != NULL)
+	CNode<T> *pNextNode = nullptr;
+	while (pCurNode != nullptr)
 	{
 		pNextNode = pCurNode->GetNext();
 		pCurNode->SetNext(pPrevNode);
@@ -169,7 +138,7 @@ inline void C_LinkedList<T>::reverse()
 template<class T>
 inline void C_LinkedList<T>::reverseRecursive(CNode<T> *pNode)
 {
-	if(pNode->GetNext() == NULL)
+	if(pNode->GetNext() == nullptr)
 	{
 		m_pHead = pNode;
 		return;
@@ -177,7 +146,7 @@ inline void C_LinkedList<T>::reverseRecursive(CNode<T> *pNode)
 	reverseRecursive(pNode->GetNext());
 	CNode<T> *pNextNode = pNode->GetNext();
 	pNextNode->SetNext(pNode);
-	pNode->SetNext(NULL);
+	pNode->SetNext(nullptr);
 }
 
 template<class T>
@@ -210,3 +179,4 @@ inline unsigned int C_LinkedList<T>::size()
 	return m_uiNumberOfNode;
 }
 
+template class C_LinkedList<unsigned int>;
